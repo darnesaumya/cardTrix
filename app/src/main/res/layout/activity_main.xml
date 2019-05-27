@@ -72,5 +72,7 @@
                 android:layout_below="@id/img3"
                 android:text="@string/test"/>
         </RelativeLayout>
+
     </LinearLayout>
+
 </ScrollView>

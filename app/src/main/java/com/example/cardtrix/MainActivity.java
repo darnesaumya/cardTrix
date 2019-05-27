@@ -28,24 +28,5 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(cardactivityintent);
             }
         });
-        try {
-            FileOutputStream fOut = openFileOutput("Test", MODE_APPEND);
-            String s = "Hello";
-            fOut.write(s.getBytes());
-            fOut.close();
-            FileInputStream fin = openFileInput("Test");
-            String temp = "";
-            int c = fin.read();
-            while(c != -1){
-                temp = temp + Character.toString((char)c);
-                c = fin.read();
-            }
-            t1.setText(temp);
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }
