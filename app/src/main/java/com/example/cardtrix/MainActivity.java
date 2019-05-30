@@ -56,8 +56,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         int id = menuItem.getItemId();
-        if(id == R.id.add_new)
-            Toast.makeText(getApplicationContext(),"Add new", Toast.LENGTH_LONG).show();
+        if(id == R.id.add_new){
+            Intent intent = new Intent(this, Add_new.class);
+            startActivity(intent);
+        }
+
         return true;
     }
 }
