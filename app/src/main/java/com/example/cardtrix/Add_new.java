@@ -19,7 +19,7 @@ public class Add_new extends AppCompatActivity {
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sqldb.execSQL("INSERT INTO CardTable VALUES ("+tf1.getText()+","+tf2.getText()+","+tf3.getText()+","+tf4.getText()+","+tf5.getText()+","+tf6.getText()+","+tf7.getText()+")");
+                sqldb.execSQL("INSERT INTO CardTable(C_Name, Emp1, Num1, Emp2, Num2, Email, Address) VALUES ('"+tf1.getText()+"' , '"+tf2.getText()+"' , '"+tf3.getText()+"' , '"+tf4.getText()+"' , '"+tf5.getText()+"' , '"+tf6.getText()+"' , '"+tf7.getText()+"')");
             }
         });
         tf1 = findViewById(R.id.com_name);
