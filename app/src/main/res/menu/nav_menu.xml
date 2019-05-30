@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/add_new"
-        android:title="Add new entry"/>
+        android:title="@string/add_new_entry"/>
     <item android:id="@+id/settings"
-        android:title = "Settings"/>
+        android:title = "@string/settings"/>
     <item android:id="@+id/help"
-        android:title="Help"/>
+        android:title="@string/help"/>
 </menu>
