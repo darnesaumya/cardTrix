@@ -7,4 +7,5 @@
     <string name="Open">Open</string>
     <string name="Close">Close</string>
     <string name="header">Header</string>
+    <string name="action_bar">Action Bar</string>
 </resources>

@@ -9,15 +9,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.support.v7.widget.Toolbar;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
     RelativeLayout rl1;
-    private DrawerLayout drawerLayout;
+    Toolbar toolbar;
+
     private ActionBarDrawerToggle toggle;
     TextView t1;
     @Override
@@ -26,7 +24,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         rl1 = findViewById(R.id.rl1);
         t1 = findViewById(R.id.t1);
-        drawerLayout = (DrawerLayout)findViewById(R.id.drawerLayout);
+        toolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(toolbar);
+        DrawerLayout drawerLayout = findViewById(R.id.drawerLayout);
         toggle = new ActionBarDrawerToggle(this , drawerLayout, R.string.Open, R.string.Close);
         rl1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,7 +37,9 @@ public class MainActivity extends AppCompatActivity {
         });
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if(getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
     }
 
     @Override
