@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView = findViewById(R.id.nav_view);
         rl1 = findViewById(R.id.rl1);
         t1 = findViewById(R.id.t1);
-        toolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        toolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar);
         DrawerLayout drawerLayout = findViewById(R.id.drawerLayout);
         toggle = new ActionBarDrawerToggle(this , drawerLayout, R.string.Open, R.string.Close);
@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if(getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
+        navigationView.setNavigationItemSelectedListener(this);
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
