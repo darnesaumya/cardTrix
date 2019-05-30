@@ -70,5 +70,12 @@
         android:layout_below="@id/email"
         android:layout_marginStart="15dp"
         android:hint="@string/address"/>
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn1"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="@string/click_me"
+        android:layout_below="@id/address"
+        android:layout_marginStart="15dp"/>
 
 </RelativeLayout>
