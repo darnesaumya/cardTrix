@@ -20,6 +20,6 @@ public class Add_new extends AppCompatActivity {
         tf6 = findViewById(R.id.email);
         tf7 = findViewById(R.id.address);
         sqldb = openOrCreateDatabase("MainDB",MODE_PRIVATE, null);
-
+        sqldb.execSQL("INSERT INTO CardTable VALUES ("+tf1.getText()+","+tf2.getText()+","+tf3.getText()+","+tf4.getText()+","+tf5.getText()+","+tf6.getText()+","+tf7.getText()+")");
     }
 }
