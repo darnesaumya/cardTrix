@@ -17,12 +17,14 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     RelativeLayout rl1;
     Toolbar toolbar;
+    NavigationView navigationView;
     private ActionBarDrawerToggle toggle;
     TextView t1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        navigationView = findViewById(R.id.nav_view);
         rl1 = findViewById(R.id.rl1);
         t1 = findViewById(R.id.t1);
         toolbar = (Toolbar) findViewById(R.id.my_toolbar);
@@ -54,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         int id = menuItem.getItemId();
         if(id == R.id.add_new)
-            Toast.makeText(MainActivity.this,"Add new", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(),"Add new", Toast.LENGTH_LONG).show();
         return true;
     }
 }
