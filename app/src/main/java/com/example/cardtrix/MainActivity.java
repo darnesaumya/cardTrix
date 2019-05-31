@@ -1,6 +1,7 @@
 package com.example.cardtrix;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -65,5 +66,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(intent);
         }
         return true;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Cursor resultset = sqldb.rawQuery("Select C_Name from CardTable",null);
+        resultset.moveToLast();
+        String str = resultset.getString(0);
+        t1.setText(str);
     }
 }
