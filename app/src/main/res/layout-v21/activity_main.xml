@@ -24,69 +24,6 @@
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
             </android.support.v7.widget.Toolbar>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:id="@+id/rl1"
-                android:background="@color/colorAccent">
-                <android.support.v7.widget.AppCompatImageView
-                    android:layout_width="match_parent"
-                    android:id="@+id/img1"
-                    android:layout_height="170dp"
-                    android:layout_margin="3dp"
-                    android:background="@color/white"/>
-                <android.support.v7.widget.AppCompatCheckedTextView
-                    android:layout_width="250dp"
-                    android:id="@+id/t1"
-                    android:layout_height="30dp"
-                    android:layout_below="@id/img1"
-                    android:layout_marginBottom="3dp"
-                    android:layout_marginStart="3dp"
-                    android:background="@color/white"
-                    android:text="@string/test"/>
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:background="@color/colorAccent">
-                <android.support.v7.widget.AppCompatImageView
-                    android:layout_width="match_parent"
-                    android:id="@+id/img2"
-                    android:layout_height="170dp"
-                    android:layout_margin="3dp"
-                    android:background="@color/white"/>
-                <android.support.v7.widget.AppCompatCheckedTextView
-                    android:layout_width="250dp"
-                    android:layout_height="30dp"
-                    android:layout_marginBottom="3dp"
-                    android:layout_marginStart="3dp"
-                    android:layout_below="@id/img2"
-                    android:background="@color/white"
-                    android:text="@string/test"/>
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:background="@color/colorAccent">
-                <android.support.v7.widget.AppCompatImageView
-                    android:layout_width="match_parent"
-                    android:id="@+id/img3"
-                    android:background="@color/white"
-                    android:layout_margin="3dp"
-                    android:layout_height="170dp" />
-                <android.support.v7.widget.AppCompatCheckedTextView
-                    android:layout_width="250dp"
-                    android:background="@color/white"
-                    android:layout_height="30dp"
-                    android:layout_marginBottom="3dp"
-                    android:layout_marginStart="3dp"
-                    android:layout_below="@id/img3"
-                    android:text="@string/test"/>
-            </RelativeLayout>
         </LinearLayout>
     </ScrollView>
     <android.support.design.widget.NavigationView
