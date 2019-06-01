@@ -75,5 +75,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         resultset.moveToLast();
         String str = resultset.getString(0);
         t1.setText(str);
+        resultset.close();
     }
 }
