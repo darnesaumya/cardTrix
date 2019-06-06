@@ -9,11 +9,12 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
-
+import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +33,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
         cardDataList = new ArrayList<>();
         listView = findViewById(R.id.card_list);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                TextView tf = view.findViewById(R.id.tf);
+                String title = tf.getText().toString();
+
+            }
+        });
         CardListAdapter cardListAdapter = new CardListAdapter(this,R.layout.card_layout, cardDataList);
         listView.setAdapter(cardListAdapter);
         navigationView = findViewById(R.id.nav_view);
@@ -45,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
         sql = openOrCreateDatabase("MainDB", MODE_PRIVATE,null);
-        sql.execSQL("CREATE TABLE IF NOT EXISTS CardTable (C_Name VARCHAR , Emp1 VARCHAR, Num1 INTEGER, Emp2 VARCHAR, Num2 INTEGER, Email VARCHAR, Address VARCHAR)");
+        sql.execSQL("CREATE TABLE IF NOT EXISTS CardTable (C_ID Integer, C_Name VARCHAR , Emp1 VARCHAR, Num1 INTEGER, Emp2 VARCHAR, Num2 INTEGER, Email VARCHAR, Address VARCHAR)");
         navigationView.setNavigationItemSelectedListener(this);
         populator();
     }
@@ -65,7 +74,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         return true;
     }
-
     @Override
     protected void onResume() {
         super.onResume();
