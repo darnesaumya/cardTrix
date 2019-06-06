@@ -9,6 +9,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Toolbar toolbar;
     NavigationView navigationView;
     SQLiteDatabase sql;
+    CardListAdapter cardListAdapter;
     DrawerLayout drawerLayout;
     List<CardData> cardDataList;
     ListView listView;
@@ -29,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private ActionBarDrawerToggle toggle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.println(5,"OnCreat()", "Created");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         cardDataList = new ArrayList<>();
@@ -41,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             }
         });
-        CardListAdapter cardListAdapter = new CardListAdapter(this,R.layout.card_layout, cardDataList);
+        cardListAdapter = new CardListAdapter(this,R.layout.card_layout, cardDataList);
         listView.setAdapter(cardListAdapter);
         navigationView = findViewById(R.id.nav_view);
         toolbar = findViewById(R.id.my_toolbar);
@@ -77,10 +80,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onResume() {
         super.onResume();
-        cardDataList.clear();
+        Log.println(5,"OnResume()","Resumed");
         populator();
     }
     private void populator() {
+        cardDataList.clear();
         resultcursor = sql.rawQuery("Select C_Name from CardTable", null);
         if(resultcursor.getCount() > 0) {
             resultcursor.moveToFirst();
@@ -88,6 +92,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 cardDataList.add(new CardData(resultcursor.getString(0)));
             } while (resultcursor.moveToNext());
         }
+        cardListAdapter.notifyDataSetChanged();
         resultcursor.close();
     }
 }

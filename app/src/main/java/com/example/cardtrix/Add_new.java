@@ -30,6 +30,7 @@ public class Add_new extends AppCompatActivity {
         sqldb = openOrCreateDatabase("MainDB",MODE_PRIVATE, null);
         resultCursor = sqldb.rawQuery("Select MAX(C_ID) from CardTable", null);
         if(resultCursor.getCount() > 0){
+            resultCursor.moveToFirst();
             id = resultCursor.getInt(0);
         }
         btn1.setOnClickListener(new View.OnClickListener() {
