@@ -5,19 +5,19 @@
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
     android:background="@color/colorAccent">
-        <android.support.v7.widget.AppCompatImageView
-            android:layout_width="match_parent"
-            android:id="@+id/img2"
-            android:layout_height="170dp"
-            android:layout_margin="3dp"
-            android:background="@color/white"/>
-        <android.support.v7.widget.AppCompatCheckedTextView
-            android:id="@+id/tf"
-            android:layout_width="250dp"
-            android:layout_height="30dp"
-            android:layout_marginBottom="3dp"
-            android:layout_marginStart="3dp"
-            android:layout_below="@id/img2"
-            android:background="@color/white"
-            android:text="@string/test"/>
+    <android.support.v7.widget.AppCompatImageView
+        android:layout_width="match_parent"
+        android:id="@+id/img2"
+        android:layout_height="170dp"
+        android:layout_margin="3dp"
+        android:background="@color/white"/>
+    <android.support.v7.widget.AppCompatCheckedTextView
+        android:id="@+id/tf"
+        android:layout_width="250dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="3dp"
+        android:layout_marginStart="3dp"
+        android:layout_below="@id/img2"
+        android:background="@color/white"
+        android:text="@string/test"/>
 </RelativeLayout>
