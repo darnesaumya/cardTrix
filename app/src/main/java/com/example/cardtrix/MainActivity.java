@@ -41,7 +41,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 TextView tf = view.findViewById(R.id.tf);
                 String title = tf.getText().toString();
-
+                Intent intent = new Intent(MainActivity.this, CardViewActivity.class);
+                startActivity(intent);
             }
         });
         cardListAdapter = new CardListAdapter(this,R.layout.card_layout, cardDataList);
