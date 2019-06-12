@@ -28,14 +28,14 @@ public class Add_new extends AppCompatActivity {
         tf6 = findViewById(R.id.email);
         tf7 = findViewById(R.id.address);
         sqldb = openOrCreateDatabase("MainDB",MODE_PRIVATE, null);
-        resultCursor = sqldb.rawQuery("Select MAX(C_ID) from CardTable", null);
-        if(resultCursor.getCount() > 0){
-            resultCursor.moveToFirst();
-            id = resultCursor.getInt(0);
-        }
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                resultCursor = sqldb.rawQuery("Select MAX(C_ID) from CardTable", null);
+                if(resultCursor.getCount() > 0) {
+                    resultCursor.moveToFirst();
+                    id = resultCursor.getInt(0) + 1;
+                }
                 sqldb.execSQL("INSERT INTO CardTable(C_ID, C_Name, Emp1, Num1, Emp2, Num2, Email, Address) VALUES (" + id + ",'"+tf1.getText()+"' , '"+tf2.getText()+"' , '"+tf3.getText()+"' , '"+tf4.getText()+"' , '"+tf5.getText()+"' , '"+tf6.getText()+"' , '"+tf7.getText()+"')");
             }
         });

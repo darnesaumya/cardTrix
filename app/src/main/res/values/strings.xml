@@ -17,4 +17,5 @@
     <string name="email_address">Email Address</string>
     <string name="address">Address</string>
     <string name="click_me">Click Me!</string>
+    <string name="save_changes">Save Changes</string>
 </resources>

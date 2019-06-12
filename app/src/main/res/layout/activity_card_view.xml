@@ -18,30 +18,72 @@
             android:layout_margin="3dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <TextView
-                android:id="@+id/NameField"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/Name"/>
             <EditText
-                android:layout_width="80dp"
-                android:layout_height="30dp"
-                android:textSize="14sp"
-                android:layout_toEndOf="@id/NameField"
-                android:inputType="text"/>
-            <TextView
-                android:id="@+id/NumField"
+                android:id="@+id/c_name"
+                android:inputType="text"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/Number"
-                android:layout_below="@id/NameField"/>
+                android:layout_height="50dp"
+                android:hint="@string/company_name"
+                android:paddingTop="15dp"
+                android:layout_centerHorizontal="true"/>
             <EditText
-                android:layout_width="80dp"
-                android:layout_height="30dp"
-                android:textSize="14sp"
-                android:layout_below="@id/NameField"
-                android:layout_toEndOf="@id/NumField"/>
+                android:id="@+id/employee1"
+                android:inputType="text"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_below="@id/c_name"
+                android:hint="@string/employee_1"
+                android:paddingTop="15dp"
+                android:layout_marginStart="15dp"/>
 
+            <EditText
+                android:id="@+id/number1"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_below="@id/c_name"
+                android:layout_marginStart="15dp"
+                android:layout_toEndOf="@id/employee1"
+                android:hint="@string/contact_number"
+                android:inputType="text" />
+            <EditText
+                android:id="@+id/employee2"
+                android:inputType="text"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_below="@id/employee1"
+                android:hint="@string/employee_1"
+                android:paddingTop="15dp"
+                android:layout_marginStart="15dp"/>
+            <EditText
+                android:id="@+id/number2"
+                android:inputType="text"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_below="@id/number1"
+                android:layout_toEndOf="@id/employee2"
+                android:hint="@string/contact_number"
+                android:layout_marginStart="15dp"/>
+            <EditText
+                android:id="@+id/email_add"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_below="@id/number2"
+                android:layout_marginStart="15dp"
+                android:hint="@string/email_address"/>
+            <EditText
+                android:id="@+id/addr"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_below="@id/email_add"
+                android:layout_marginStart="15dp"
+                android:hint="@string/address"/>
+            <Button
+                android:id="@+id/saveBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="@string/save_changes"
+                android:layout_below="@id/addr"
+                android:layout_centerHorizontal="true"/>
         </RelativeLayout>
     </android.support.v7.widget.LinearLayoutCompat>
 </ScrollView>

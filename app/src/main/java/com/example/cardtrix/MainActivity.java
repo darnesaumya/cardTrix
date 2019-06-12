@@ -15,7 +15,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +22,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Toolbar toolbar;
     NavigationView navigationView;
     SQLiteDatabase sql;
+    CardData cardData;
     CardListAdapter cardListAdapter;
     DrawerLayout drawerLayout;
     List<CardData> cardDataList;
@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private ActionBarDrawerToggle toggle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.println(5,"OnCreat()", "Created");
+        Log.println(5,"OnCreate()", "Created");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         cardDataList = new ArrayList<>();
@@ -39,9 +39,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                TextView tf = view.findViewById(R.id.tf);
-                String title = tf.getText().toString();
+                cardData = cardDataList.get(i);
+                int id = cardData.getId();
                 Intent intent = new Intent(MainActivity.this, CardViewActivity.class);
+                intent.putExtra("Id", id);
                 startActivity(intent);
             }
         });
@@ -86,11 +87,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
     private void populator() {
         cardDataList.clear();
-        resultcursor = sql.rawQuery("Select C_Name from CardTable", null);
+        resultcursor = sql.rawQuery("Select C_ID, C_Name from CardTable", null);
         if(resultcursor.getCount() > 0) {
             resultcursor.moveToFirst();
             do {
-                cardDataList.add(new CardData(resultcursor.getString(0)));
+                cardDataList.add(new CardData(resultcursor.getInt(0), resultcursor.getString(1)));
             } while (resultcursor.moveToNext());
         }
         cardListAdapter.notifyDataSetChanged();
