@@ -5,6 +5,7 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
+import android.graphics.Matrix;
 import android.media.ExifInterface;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
@@ -66,19 +67,52 @@ public class Add_new extends AppCompatActivity {
         if(requestCode == 1 && resultCode == RESULT_OK ){
             Bundle extras = data.getExtras();
             ExifInterface image = (ExifInterface) extras.get("data");
-            int orientation = image.getAttributeInt(ExifInterface.TAG_ORIENTATION, 0);
-            switch (orientation){
-                case ExifInterface.ORIENTATION_ROTATE_90:
-                    rotate = ExifInterface.ORIENTATION_ROTATE_270;
-                    break;
-                case ExifInterface.ORIENTATION_ROTATE_180:
-                    rotate = ExifInterface.ORIENTATION_ROTATE_180;
-                    break;
-                case ExifInterface.ORIENTATION_ROTATE_270:
-                    rotate = ExifInterface.ORIENTATION_ROTATE_90;
-                    break;
-            }
-            image.setAttribute(ExifInterface.TAG_ORIENTATION, rotate+"");
+            int orientation = image.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
+            Bitmap bitmapImage = rotateBitmap((Bitmap) extras.get("data"), orientation);
+            img.setImageBitmap(bitmapImage);
+        }
+    }
+    public static Bitmap rotateBitmap(Bitmap bitmap, int orientation) {
+
+        Matrix matrix = new Matrix();
+        switch (orientation) {
+            case ExifInterface.ORIENTATION_NORMAL:
+                return bitmap;
+            case ExifInterface.ORIENTATION_FLIP_HORIZONTAL:
+                matrix.setScale(-1, 1);
+                break;
+            case ExifInterface.ORIENTATION_ROTATE_180:
+                matrix.setRotate(180);
+                break;
+            case ExifInterface.ORIENTATION_FLIP_VERTICAL:
+                matrix.setRotate(180);
+                matrix.postScale(-1, 1);
+                break;
+            case ExifInterface.ORIENTATION_TRANSPOSE:
+                matrix.setRotate(90);
+                matrix.postScale(-1, 1);
+                break;
+            case ExifInterface.ORIENTATION_ROTATE_90:
+                matrix.setRotate(90);
+                break;
+            case ExifInterface.ORIENTATION_TRANSVERSE:
+                matrix.setRotate(-90);
+                matrix.postScale(-1, 1);
+                break;
+            case ExifInterface.ORIENTATION_ROTATE_270:
+                matrix.setRotate(-90);
+                break;
+            default:
+                return bitmap;
+        }
+        try {
+            Bitmap bmRotated = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
+            bitmap.recycle();
+            return bmRotated;
+        }
+        catch (OutOfMemoryError e) {
+            e.printStackTrace();
+            return null;
         }
     }
 }

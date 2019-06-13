@@ -7,7 +7,7 @@ public class CardData {
         this.id = id;
         this.title= title;
     }
-    public String getTitle(){
+    public String getTitle() {
         return title;
     }
     public int getId(){
