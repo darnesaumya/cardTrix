@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if(getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
+        
         sql = openOrCreateDatabase("MainDB", MODE_PRIVATE,null);
         sql.execSQL("CREATE TABLE IF NOT EXISTS CardTable (C_ID Integer, C_Name VARCHAR , Emp1 VARCHAR, Num1 INTEGER, Emp2 VARCHAR, Num2 INTEGER, Email VARCHAR, Address VARCHAR, Image INTEGER)");
         navigationView.setNavigationItemSelectedListener(this);

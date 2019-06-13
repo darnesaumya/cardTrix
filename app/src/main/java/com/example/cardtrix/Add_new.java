@@ -5,6 +5,7 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
+import android.media.ExifInterface;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -61,10 +62,23 @@ public class Add_new extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        int rotate = 0;
         if(requestCode == 1 && resultCode == RESULT_OK ){
             Bundle extras = data.getExtras();
-            Bitmap image = (Bitmap) extras.get("data");
-            img.setImageBitmap(image);
+            ExifInterface image = (ExifInterface) extras.get("data");
+            int orientation = image.getAttributeInt(ExifInterface.TAG_ORIENTATION, 0);
+            switch (orientation){
+                case ExifInterface.ORIENTATION_ROTATE_90:
+                    rotate = ExifInterface.ORIENTATION_ROTATE_270;
+                    break;
+                case ExifInterface.ORIENTATION_ROTATE_180:
+                    rotate = ExifInterface.ORIENTATION_ROTATE_180;
+                    break;
+                case ExifInterface.ORIENTATION_ROTATE_270:
+                    rotate = ExifInterface.ORIENTATION_ROTATE_90;
+                    break;
+            }
+            image.setAttribute(ExifInterface.TAG_ORIENTATION, rotate+"");
         }
     }
 }
