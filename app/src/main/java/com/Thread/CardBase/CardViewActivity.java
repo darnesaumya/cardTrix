@@ -1,4 +1,4 @@
-package com.example.cardtrix;
+package com.Thread.CardBase;
 
 import android.content.ContentValues;
 import android.database.Cursor;
@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import com.Thread.CardBase.R;
 
 public class CardViewActivity extends AppCompatActivity {
     int id,num1,num2;

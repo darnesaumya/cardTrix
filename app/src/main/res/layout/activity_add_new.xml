@@ -4,13 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Add_new">
-    <android.support.v7.widget.AppCompatImageView
+    tools:context="com.Thread.CardBase.Add_new">
+    <TextureView
         android:id="@+id/imgview"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:scaleType="centerCrop"
-        android:background="@color/colorAccent"/>
+        android:scaleType="centerCrop"/>
     <EditText
         android:id="@+id/com_name"
         android:inputType="text"

@@ -1,4 +1,4 @@
-package com.example.cardtrix;
+package com.Thread.CardBase;
 
 import org.junit.Test;
 

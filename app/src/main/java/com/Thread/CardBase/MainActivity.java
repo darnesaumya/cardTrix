@@ -1,4 +1,4 @@
-package com.example.cardtrix;
+package com.Thread.CardBase;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -15,6 +15,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import com.Thread.CardBase.R;
+
 import java.util.ArrayList;
 import java.util.List;
 

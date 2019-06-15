@@ -1,4 +1,4 @@
-package com.example.cardtrix;
+package com.Thread.CardBase;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+
+import com.Thread.CardBase.R;
 
 import java.util.List;
 

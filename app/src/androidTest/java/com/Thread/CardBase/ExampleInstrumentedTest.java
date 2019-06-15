@@ -1,4 +1,4 @@
-package com.example.cardtrix;
+package com.Thread.CardBase;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
