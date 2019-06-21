@@ -5,20 +5,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.Thread.CardBase.Add_new">
+
     <TextureView
         android:id="@+id/imgview"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:scaleType="centerCrop"/>
+        android:layout_height="710px"
+        android:layout_alignParentStart="true"
+        android:scaleType="centerCrop" />
+
     <EditText
         android:id="@+id/com_name"
         android:inputType="text"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_below="@id/imgview"
+        android:layout_centerHorizontal="true"
         android:hint="@string/company_name"
-        android:paddingTop="15dp"
-        android:layout_centerHorizontal="true"/>
+        android:paddingTop="15dp" />
     <EditText
         android:id="@+id/emp1"
         android:inputType="text"
@@ -77,6 +80,7 @@
         android:text="@string/Add"
         android:layout_below="@id/address"
         android:layout_marginStart="15dp" />
+
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/photo"
         android:layout_width="wrap_content"
