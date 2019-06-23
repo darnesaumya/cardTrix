@@ -5,16 +5,16 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.SurfaceTexture;
 import android.hardware.camera2.CameraAccessException;
+import android.hardware.camera2.CameraCaptureSession;
 import android.hardware.camera2.CameraCharacteristics;
 import android.hardware.camera2.CameraDevice;
 import android.hardware.camera2.CameraManager;
+import android.hardware.camera2.CaptureRequest;
 import android.hardware.camera2.params.StreamConfigurationMap;
-import android.os.Build;
+import android.media.ImageReader;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -25,6 +25,7 @@ import android.view.TextureView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -38,6 +39,15 @@ public class CameraActivity extends AppCompatActivity {
     Handler cameraThreadHandler;
     CameraDevice cameraDevice;
     Size previewSize;
+    CaptureRequest.Builder builder;
+    Size imageSize;
+    ImageReader imageReader;
+    final ImageReader.OnImageAvailableListener onImageAvailableListener = new ImageReader.OnImageAvailableListener() {
+        @Override
+        public void onImageAvailable(ImageReader reader) {
+
+        }
+    };
     static SparseIntArray ORIENTATION = new SparseIntArray();
 
     static {
@@ -74,7 +84,7 @@ public class CameraActivity extends AppCompatActivity {
         @Override
         public void onOpened(CameraDevice camera) {
             cameraDevice = camera;
-            Toast.makeText(getApplicationContext(),"Camera connection made", Toast.LENGTH_LONG).show();
+            startPreview();
         }
 
         @Override
@@ -155,6 +165,7 @@ public class CameraActivity extends AppCompatActivity {
                 }
                 previewSize = chooseSize(map.getOutputSizes(SurfaceTexture.class), fwidth, fheight);
                 cameraID = tempCameraId;
+                //imageSize = chooseOptimalSize();
                 return;
             }
         } catch (CameraAccessException e) {
@@ -173,6 +184,32 @@ public class CameraActivity extends AppCompatActivity {
                 }
                 requestPermissions(new String[]{Manifest.permission.CAMERA}, REQUEST_CAMERA_PERMISSION_RESULT);
             }
+        } catch (CameraAccessException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void startPreview(){
+        SurfaceTexture surfaceTexture = img.getSurfaceTexture();
+        surfaceTexture.setDefaultBufferSize(previewSize.getWidth(), previewSize.getHeight());
+        Surface previewSurface = new Surface(surfaceTexture);
+        try {
+            builder = cameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_PREVIEW);
+            builder.addTarget(previewSurface);
+            cameraDevice.createCaptureSession(Arrays.asList(previewSurface), new CameraCaptureSession.StateCallback() {
+                @Override
+                public void onConfigured(CameraCaptureSession session) {
+                    try {
+                        session.setRepeatingRequest(builder.build(),null, cameraThreadHandler);
+                    } catch (CameraAccessException e) {
+                        e.printStackTrace();
+                    }
+                }
+                @Override
+                public void onConfigureFailed(CameraCaptureSession session) {
+                    Toast.makeText(getApplicationContext(), "Error" ,Toast.LENGTH_LONG).show();
+                }
+            }, null);
         } catch (CameraAccessException e) {
             e.printStackTrace();
         }
