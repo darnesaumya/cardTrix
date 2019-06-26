@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">cardTrix</string>
+    <string name="app_name">Card Base</string>
     <string name="test">Test Text 1</string>
     <string name="Name">Name</string>
     <string name="Number">Number</string>

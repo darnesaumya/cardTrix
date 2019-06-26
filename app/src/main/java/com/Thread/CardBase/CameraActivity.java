@@ -200,6 +200,8 @@ public class CameraActivity extends AppCompatActivity {
                 @Override
                 public void onConfigured(CameraCaptureSession session) {
                     try {
+                        builder.set(CaptureRequest.CONTROL_AF_MODE,
+                                CaptureRequest.CONTROL_AF_MODE_CONTINUOUS_PICTURE);
                         session.setRepeatingRequest(builder.build(),null, cameraThreadHandler);
                     } catch (CameraAccessException e) {
                         e.printStackTrace();
