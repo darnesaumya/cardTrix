@@ -40,14 +40,7 @@ public class CameraActivity extends AppCompatActivity {
     CameraDevice cameraDevice;
     Size previewSize;
     CaptureRequest.Builder builder;
-    Size imageSize;
-    ImageReader imageReader;
-    final ImageReader.OnImageAvailableListener onImageAvailableListener = new ImageReader.OnImageAvailableListener() {
-        @Override
-        public void onImageAvailable(ImageReader reader) {
 
-        }
-    };
     static SparseIntArray ORIENTATION = new SparseIntArray();
 
     static {
@@ -165,7 +158,6 @@ public class CameraActivity extends AppCompatActivity {
                 }
                 previewSize = chooseSize(map.getOutputSizes(SurfaceTexture.class), fwidth, fheight);
                 cameraID = tempCameraId;
-                //imageSize = chooseOptimalSize();
                 return;
             }
         } catch (CameraAccessException e) {
